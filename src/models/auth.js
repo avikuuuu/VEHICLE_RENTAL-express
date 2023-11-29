@@ -56,17 +56,17 @@ const create = (body) => {
             password: hashedPassword,
             active_year: new Date().getFullYear(),
             gender_id: 3,
-            roles_id: 2,
+            roles_id: 3,
             pin_verify: pin,
-            status: "pending",
+            status: "active",
           };
 
           db.query(sqlQuery, [bodyWithHashedPassword], (err, result) => {
             if (err) return reject({ status: 500, err });
 
-            sendPinVerifyRegister(name, email, pin);
+          //  sendPinVerifyRegister(name, email, pin);
             result = {
-              msg: "Registration Success, Please check your email for verification",
+              msg: "Registration Success, ",
               pin: pin,
             };
             resolve({ status: 200, result });
