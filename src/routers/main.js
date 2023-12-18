@@ -15,13 +15,13 @@ const adminRouter = require("./admin");
 // const upload = require('../middlewares/upload');
 
 mainRouter.use("/wellcome", wellcomeRouter); //wellcome
-mainRouter.use("/auth", authRouter);
-mainRouter.use("/admin", adminRouter);
 mainRouter.use("/users", userRouter);
 mainRouter.use("/vehicles", vehicleRouter);
 mainRouter.use("/locations", locationRouter);
 mainRouter.use("/history", historyRouter);
 mainRouter.use("/testimonial", testimonialRouter);
+mainRouter.use("/auth", authRouter);
+mainRouter.use("/admin", adminRouter);
 
 // express.method(endpoint, heandler1/2, dsb)
 mainRouter.get("/", (require, response) => {

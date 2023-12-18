@@ -4,12 +4,19 @@ const bcrypt = require("bcrypt");
 
 const detailAllUserData = (query) => {
   return new Promise((resolve, reject) => {
-    let sqlQuery = `SELECT u.id, u.name, u.email, u.image,
-        u.phone, u.active_year, g.name AS 'gender', u.address,
-        DATE_FORMAT(u.dob,'%d/%m/%Y') AS 'dob', r.name AS 'role'
-        FROM users u
-        JOIN genders g ON u.gender_id = g.id
-        JOIN roles r ON u.roles_id = r.id `;
+    let sqlQuery = 
+                  `SELECT u.id, 
+                  u.name, u.email, 
+                  u.image,
+                  u.phone, 
+                  u.active_year, 
+                  g.name AS 'gender', 
+                  u.address,
+                  DATE_FORMAT(u.dob,'%d/%m/%Y') AS 'dob', 
+                  r.name AS 'role'
+                  FROM users u
+                  JOIN genders g ON u.gender_id = g.id
+                  JOIN roles r ON u.roles_id = r.id `;
 
     const statment = [];
 
@@ -21,6 +28,7 @@ const detailAllUserData = (query) => {
     let queryBy = "";
     let queryOrder = "";
 
+    
     let keyword = "";
     if (query.search) {
       keyword = `%${query.search}%`;

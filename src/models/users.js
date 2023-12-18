@@ -5,13 +5,28 @@ const fs = require("fs");
 
 const userDataPersonal = (id) => {
   return new Promise((resolve, reject) => {
-    const sqlQuery = `SELECT u.id, u.name, u.email, u.image,
-        u.phone, u.active_year, g.name AS 'gender', u.address,
-        DATE_FORMAT(u.dob,'%Y-%m-%d') AS 'dob', r.name AS 'role'
-        FROM users u
-        JOIN genders g ON u.gender_id = g.id
-        JOIN roles r ON u.roles_id = r.id
-        WHERE u.id = ? `;
+    const sqlQuery = `SELECT u.id, 
+    u.name, 
+    u.email, 
+    u.image,
+    u.phone, 
+    u.active_year, 
+    g.name AS 'gender', 
+    u.address,
+    DATE_FORMAT(u.dob,'%Y-%m-%d') AS 'dob', 
+    r.name AS 'role'
+
+    FROM 
+    users u
+
+    JOIN 
+    genders g ON u.gender_id = g.id
+
+    JOIN 
+    roles r ON u.roles_id = r.id
+        
+    WHERE 
+    u.id = ? `;
 
     db.query(sqlQuery, id, (err, result) => {
       if (err) return reject({ status: 500, err });
@@ -33,13 +48,25 @@ const editUserData = (userInfo, body, file) => {
     db.query(checkEmail, [email], (err, result) => {
       if (err) return reject({ status: 500, err });
       if (result.length > 0 && userInfo.email !== email)
-        return reject({ status: 401, err: "Email Is Already" });
+        return reject({
+          status: 401,
+          err: "Email Is Already",
+        });
       if (email !== "" && !emailPattern.test(email))
-        return reject({ status: 401, err: "Format Email Invalid" });
+        return reject({
+          status: 401,
+          err: "Format Email Invalid",
+        });
       if (phone !== "" && !phonePattern.test(phone))
-        return reject({ status: 401, err: "Format Number Phone Invalid" });
+        return reject({
+          status: 401,
+          err: "Format Number Phone Invalid",
+        });
       if (dob !== undefined && dob !== "" && !datePattern.test(dob))
-        return reject({ status: 401, err: "Format Date Invalid" });
+        return reject({
+          status: 401,
+          err: "Format Date Invalid",
+        });
 
       const timeStamp = new Date();
 

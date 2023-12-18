@@ -23,7 +23,7 @@ const editUser = (req, res) => {
       responseHelper.success(res, status, result);
     })
     .catch(({ status, err }) => {
-      responseHelper.success(res, status, err);
+      responseHelper.error(res, status, err);
     });
 };
 
@@ -36,7 +36,7 @@ const editPassword = (req, res) => {
       responseHelper.success(res, status, result);
     })
     .catch(({ status, err }) => {
-      responseHelper.success(res, status, err);
+      responseHelper.error(res, status, err);
     });
 };
 
@@ -49,7 +49,7 @@ const upgradeUser = (req, res) => {
       responseHelper.success(res, status, result);
     })
     .catch(({ status, err }) => {
-      responseHelper.success(res, status, err);
+      responseHelper.error(res, status, err);
     });
 };
 
@@ -62,7 +62,7 @@ const deleteAccount = (req, res) => {
       responseHelper.success(res, status, result);
     })
     .catch(({ status, err }) => {
-      responseHelper.success(res, status, err);
+      responseHelper.error(res, status, err);
     });
 };
 

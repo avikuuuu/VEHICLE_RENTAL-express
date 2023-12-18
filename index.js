@@ -23,8 +23,8 @@ const corsOptions = {
     "http://localhost:3000",
     "http://localhost:8080",
   ],
-  allowedHeader: "x-access-token",
-  method: ["GET", "POST", "PATCH", "DETELE", "OPTIONS"],
+  allowedHeaders: "x-access-token",
+  method: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
 };
 
 server.use(cors(corsOptions));

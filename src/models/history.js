@@ -56,16 +56,19 @@ const postNewHistory = (body, id, params) => {
 
 const getHistory = (id, query) => {
   return new Promise((resolve, reject) => {
-    let sqlQuery = `SELECT h.id, v.name, t.name AS "type", h.payment, h.quantity, s.name AS "status",
-        (SELECT images FROM vehicles_img WHERE vehicle_id = v.id LIMIT 1) AS image,
-        h.create_at, h.update_at,
-        (SELECT create_at FROM historys WHERE vehicles_id = v.id LIMIT 1) AS "renter_time",
-        h.rating, h.testimony
-        FROM historys h
-        JOIN vehicles v ON h.vehicles_id = v.id
-        JOIN types t ON v.types_id = t.id
-        JOIN status s ON h.status_id = s.id
-        WHERE h.users_id = ${id} `;
+    let sqlQuery = 
+              `SELECT h.id, 
+              v.name, t.name AS "type", 
+              h.payment, h.quantity, s.name AS "status",
+              (SELECT images FROM vehicles_img WHERE vehicle_id = v.id LIMIT 1) AS image,
+              h.create_at, h.update_at,
+              (SELECT create_at FROM historys WHERE vehicles_id = v.id LIMIT 1) AS "renter_time",
+              h.rating, h.testimony
+              FROM historys h
+              JOIN vehicles v ON h.vehicles_id = v.id
+              JOIN types t ON v.types_id = t.id
+              JOIN status s ON h.status_id = s.id
+              WHERE h.users_id = ${id} `;
 
     let querySearch = "";
     let queryKeyword = "";
