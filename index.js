@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 
-const mainRouter = require("./src/routers/main");
+const mainRouter = require("./api/routers/main");
 
 const server = express();
 const logger = morgan(
@@ -35,6 +35,6 @@ server.use(
 );
 server.use(express.json());
 server.use(logger);
-server.use(express.static("public/img/users"));
-server.use(express.static("public/img/vehicles"));
+server.use(express.static("api/public/img/users"));
+server.use(express.static("api/public/img/vehicles"));
 server.use(mainRouter);
